@@ -47,7 +47,7 @@ const logger = {
     if (isProd) {
       console.log('ENVIRONMENT: '.bgYellow, 'PRODUCTION'.blue.bold)
     } else {
-      console.log('ENVIRONMENT: '.bgYellow, 'DEVELOPMENT'.green.bold)
+      console.log('ENVIRONMENT: '.bgYellow, 'DEVELOPMENT'.white.bold)
     }
 
     if (isConnected) {
