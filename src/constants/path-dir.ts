@@ -4,6 +4,7 @@ import { conNex } from '../utils'
 
 const PATH_DIR = {
   HOME: conNex(GLOBAL.API_URL, PATH.HOME),
+  API: conNex('/api', GLOBAL.API_VERSION),
 }
 
 export default PATH_DIR
