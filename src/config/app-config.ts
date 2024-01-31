@@ -9,7 +9,7 @@ class App {
   private env: string = GLOBAL.ENV
 
   static app() {
-    return new App().app
+    return new App().start()
   }
 
   constructor() {
@@ -23,6 +23,10 @@ class App {
     serverRoute(this.app)
   }
 
+  /**
+   * Start the server
+   * @returns void
+   */
   public start(): void {
     let prod = false
     if (this.env === 'production') {
