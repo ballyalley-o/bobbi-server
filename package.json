@@ -1,0 +1,29 @@
+{
+  "name": "bobbi-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start:run": "nodemon .dist/app.js",
+    "start": "concurrently npm:start:*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ballyalley-o/bobbi-server.git"
+  },
+  "keywords": [],
+  "author": "Bally Lomibao<bgoodies.dev@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ballyalley-o/bobbi-server/issues"
+  },
+  "homepage": "https://github.com/ballyalley-o/bobbi-server#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3",
+    "tsc-alias": "^1.8.8",
+    "typedoc": "^0.25.7"
+  }
+}
