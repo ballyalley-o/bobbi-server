@@ -11,7 +11,6 @@ const RESPONSE = {
       port: GLOBAL.PORT,
       environment: GLOBAL.ENV,
     }
-
     res.send(response)
   },
 }
