@@ -4,9 +4,9 @@ import { GLOBAL } from '../config'
 const RESPONSE = {
   server: (req: Request, res: Response) => {
     const response = {
-      name: 'Bobbi',
+      name: GLOBAL.APP_NAME,
       status: 'Running',
-      API: 'bobbi-server',
+      API: GLOBAL.API_VERSION,
       url: GLOBAL.API_URL,
       port: GLOBAL.PORT,
       environment: GLOBAL.ENV,
