@@ -1,9 +1,16 @@
 import express, { Application } from 'express'
 import serverRoute from '../routes/main'
 import GLOBAL from './global'
-import { PATH_DIR } from '../constants'
 import { logger } from '../middleware'
 
+/**
+ *
+ * @class App
+ *
+ * @description
+ *  -
+ *
+ */
 class App {
   private app: Application
   private env: string = GLOBAL.ENV
@@ -12,6 +19,16 @@ class App {
     return new App().start()
   }
 
+  /**
+   * Initialize the app
+   *
+   * @param app
+   * @param env - environment
+   * @param port - port
+   *
+   * Constructor
+   *
+   */
   constructor() {
     this.app = express()
     this.app.use(express.json())
@@ -19,6 +36,10 @@ class App {
     this.registerRoutes()
   }
 
+  /**
+   * Register routes
+   * @returns void
+   */
   private registerRoutes() {
     serverRoute(this.app)
   }

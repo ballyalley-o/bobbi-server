@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const GLOBAL = {
+  APP_NAME: 'Bobbi',
+  APP_SERVER_NAME: 'bobbi-server',
   API_URL: conNex(
     process.env.API_URL?.replace('{PORT}', process.env.PORT ?? '') || '',
     process.env.API_VERSION || ''
