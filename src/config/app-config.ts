@@ -1,15 +1,17 @@
 import express, { Application } from 'express'
-import serverRoute from '../routes/main'
-import GLOBAL from './global'
-import { logger } from '../middleware'
+import serverRoute from '@routes/main'
+import GLOBAL from '@config/global'
+import { logger } from '@middleware'
 
 /**
  *
  * @class App
  *
  * @description
- *  -
+ *    This class represents the application, it is responsible for initializing the app and starting the server.
+ *    It also registers the routes.
  *
+ * @returns void
  */
 class App {
   private app: Application
