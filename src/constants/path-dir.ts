@@ -1,10 +1,15 @@
-import PATH from './path'
-import { __dirname, GLOBAL } from '../config'
-import { conNex } from '../utils'
+import { __dirname } from '@config'
+import { GLOBAL } from '@config'
+import { conNex } from '@utils'
 
-const PATH_DIR = {
-  HOME: conNex(GLOBAL.API_URL, PATH.HOME),
-  API: conNex('/api', GLOBAL.API_VERSION),
+
+export class PathDir {
+  static readonly HOME_PARAM = '/'
+  static readonly API_PARAM = '/api'
+
+
+  static HOME = conNex(GLOBAL.API_URL, PathDir.HOME_PARAM)
+  static API = conNex(PathDir.API_PARAM, GLOBAL.API_VERSION)
+  static BUILD_LOC = 'client/.dist'
+  static BUILD_VIEW = conNex(__dirname, 'client', 'dist', 'index.html')
 }
-
-export default PATH_DIR
