@@ -1,4 +1,4 @@
-import { conNex } from '../utils'
+import { conNex } from '@utils'
 import dotenv from 'dotenv'
 dotenv.config()
 

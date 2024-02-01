@@ -1,5 +1,5 @@
 import path from 'path'
-import { default as App } from './app-config'
-export { default as GLOBAL } from './global'
+export { default as App } from '@config/app-config'
+export { default as GLOBAL } from '@config/global'
 
 export const __dirname = path.resolve()
