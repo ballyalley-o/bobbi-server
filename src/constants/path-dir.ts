@@ -7,6 +7,9 @@ export class PathDir {
   static readonly HOME_PARAM = '/'
   static readonly API_PARAM = '/api'
 
+  static AUTH = '/auth'
+  static SIGN_IN = '/sign-in'
+
 
   static HOME = conNex(GLOBAL.API_URL, PathDir.HOME_PARAM)
   static API = conNex(PathDir.API_PARAM, GLOBAL.API_VERSION)
