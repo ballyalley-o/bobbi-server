@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import serverRoute from '@routes/main'
 import GLOBAL from '@config/global'
 import { logger, errorHandler, notFound } from '@middleware'
+import linkNex from '@routes'
 
 /**
  *
@@ -45,6 +46,7 @@ class App {
    * @returns void
    */
   private registerRoutes() {
+    linkNex(this.app)
     serverRoute(this.app)
   }
 
