@@ -1,7 +1,7 @@
 import express, { Application } from 'express'
 import serverRoute from '@routes/main'
 import GLOBAL from '@config/global'
-import { logger } from '@middleware'
+import { logger, errorHandler, notFound } from '@middleware'
 
 /**
  *
@@ -36,6 +36,8 @@ class App {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
     this.registerRoutes()
+    this.app.use(notFound)
+    this.app.use(errorHandler)
   }
 
   /**
