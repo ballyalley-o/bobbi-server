@@ -5,8 +5,10 @@ import { Element } from '@constants'
 
 const getCore = asyncHandler(async (req: IRequestExtended, res: Response) => {
   if (req.session && req.session.signedIn) {
+    res.status(200).send(Element.CORE('You are Logged In!'))
+  } else {
+    res.status(200).send(Element.SIGNIN_REDIR)
   }
-  res.status(200).send(Element.CORE('You are Logged In!'))
 })
 
 const coreController = { getCore }
