@@ -1,8 +1,10 @@
 import express, { Application } from 'express'
+import cookieSession from 'cookie-session'
 import serverRoute from '@routes/main'
 import GLOBAL from '@config/global'
 import { logger, errorHandler, notFound } from '@middleware'
 import linkNex from '@routes'
+import { oneDay } from '@constants'
 
 /**
  *
@@ -30,6 +32,8 @@ class App {
    * @param port - port
    *
    * Constructor
+   * @middlewares
+   *
    *
    */
   constructor() {
@@ -37,6 +41,13 @@ class App {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
     this.registerRoutes()
+    this.app.use(
+      cookieSession({
+        name: 'session',
+        keys: ['key1', 'key2'],
+        maxAge: oneDay,
+      })
+    )
     this.app.use(notFound)
     this.app.use(errorHandler)
   }
