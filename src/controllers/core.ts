@@ -5,7 +5,7 @@ import { Element } from '@constants'
 
 const getCore = asyncHandler(async (req: IRequestExtended, res: Response) => {
   if (req.session && req.session.signedIn) {
-    res.status(200).send(Element.CORE('You are Logged In!'))
+    res.status(200).send(Element.CORE('HOME PAGE'))
   } else {
     res.status(200).send(Element.SIGNIN_REDIR)
   }
