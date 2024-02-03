@@ -95,6 +95,12 @@ class Element {
                     </a>
                 </div>
 
+                <div class='sign-out'>
+                    <a href=${PathDir.HOME}>
+                        <button type="button">HOME</button>
+                    </a>
+                </div>
+
 
         </div>`
   }
@@ -123,6 +129,12 @@ class Element {
                 <div class='sign-out'>
                     <a href=${PathDir.SIGN_IN}>
                         <button type="button">Sign-in</button>
+                    </a>
+                </div>
+
+                <div class='sign-out'>
+                    <a href=${PathDir.HOME}>
+                        <button type="button">HOME</button>
                     </a>
                 </div>
         </div>`
