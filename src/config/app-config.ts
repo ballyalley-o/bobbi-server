@@ -40,14 +40,15 @@ class App {
     this.app = express()
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
-    this.registerRoutes()
     this.app.use(
       cookieSession({
-        name: 'session',
-        keys: ['key1', 'key2'],
+        name: 'bobbi-session',
+        keys: ['key1'],
         maxAge: oneDay,
       })
     )
+    this.registerRoutes()
+
     this.app.use(notFound)
     this.app.use(errorHandler)
   }
