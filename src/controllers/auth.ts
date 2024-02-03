@@ -25,7 +25,7 @@ const signIn = asyncHandler(
       }
 
       req.session = {
-        loggedIn: true,
+        signedIn: true,
         userId: user.id,
         username: user.username,
         email: email,
@@ -54,11 +54,11 @@ const signOut = asyncHandler(
 )
 
 // @desc    - Signed-in  User
-// @route   - GET /auth/
+// @route   - GET /auth
 // @access  - Public
 const getAuth = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    if (req.session && req.session.loggedIn) {
+    if (req.session && req.session.signedIn) {
       // req.session = {}
       res.status(200).send(Element.CORE('You are Logged In'))
     } else {
