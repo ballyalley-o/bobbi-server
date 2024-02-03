@@ -11,7 +11,7 @@ const serverRoute = (app: Application) => {
       res.sendFile(PathDir.BUILD_VIEW)
     )
   } else {
-    app.get(PathDir.API, RESPONSE.server)
+    app.get(PathDir.API_ROOT, RESPONSE.server)
   }
 }
 
