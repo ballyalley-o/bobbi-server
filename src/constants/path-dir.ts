@@ -8,6 +8,9 @@ import { conNex } from '@utils'
  * @returns void
  */
 export class PathDir {
+  constructor() {
+    throw new Error('This class cannot be instantiated')
+  }
   // path parameters
   static readonly HOME_PARAM = '/'
   static readonly HOME_PARAM_v2 = '/home'
@@ -20,16 +23,16 @@ export class PathDir {
    * Connect the path
    * @returns void
    */
-  private static connex = conNex
+  private static _connex = conNex
 
   // endpoints
-  static API_ROOT = this.connex(PathDir.API_PARAM, GLOBAL.API_VERSION)
-  static HOME = this.connex(PathDir.API_ROOT, this.HOME_PARAM_v2)
-  static AUTH_ROOT = this.connex(PathDir.API_ROOT, PathDir.AUTH_PARAM)
-  static SIGN_IN = this.connex(PathDir.AUTH_ROOT, PathDir.SIGN_IN_PARAM)
-  static SIGN_OUT = this.connex(PathDir.AUTH_ROOT, PathDir.SIGN_OUT_PARAM)
+  static API_ROOT = this._connex(PathDir.API_PARAM, GLOBAL.API_VERSION)
+  static HOME = this._connex(PathDir.API_ROOT, this.HOME_PARAM_v2)
+  static AUTH_ROOT = this._connex(PathDir.API_ROOT, PathDir.AUTH_PARAM)
+  static SIGN_IN = this._connex(PathDir.AUTH_ROOT, PathDir.SIGN_IN_PARAM)
+  static SIGN_OUT = this._connex(PathDir.AUTH_ROOT, PathDir.SIGN_OUT_PARAM)
 
   // @production
-  static BUILD_LOC = this.connex(__dirname, 'client', '.dist')
-  static BUILD_VIEW = this.connex(__dirname, 'client', '.dist', 'index.html')
+  static BUILD_LOC = this._connex(__dirname, 'client', '.dist')
+  static BUILD_VIEW = this._connex(__dirname, 'client', '.dist', 'index.html')
 }
