@@ -23,6 +23,7 @@ export class PathDir {
    * Connect the path
    * @returns void
    */
+
   private static _connex = conNex
 
   // endpoints
