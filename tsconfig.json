@@ -10,6 +10,8 @@
     "paths": {
       "@*": ["./*"]
     },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noResolve": false,
     "skipLibCheck": true,
     "jsx": "preserve",
@@ -27,6 +29,7 @@
       "outputCheck": ["js", "json", "jsx", "mjs"]
     }
   },
+
   "include": ["**/*.ts", "**/*.js"],
   "exclude": ["node_modules"]
 }
