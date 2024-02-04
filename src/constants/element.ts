@@ -89,11 +89,19 @@ class Element {
             <p>Welcome to Bobbi Server</p>
 
 
-                <div class='sign-out'>
+                ${
+                  res === 'UNAUTHORIZED ACCESS'
+                    ? `<div class='sign-out'>
+                        <a href=${PathDir.SIGN_IN}>
+                            <button type="button">Sign-in</button>
+                        </a>
+                    </div>`
+                    : ` <div class='sign-out'>
                     <a href=${PathDir.SIGN_OUT}>
                         <button type="button">Sign Out</button>
                     </a>
-                </div>
+                </div>`
+                }
 
                 <div class='sign-out'>
                     <a href=${PathDir.HOME}>
