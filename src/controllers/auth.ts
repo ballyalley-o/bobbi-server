@@ -32,7 +32,6 @@ const signIn = asyncHandler(
       }
 
       res.status(200).redirect(PathDir.AUTH_ROOT)
-      // res.status(200).send(Element.CORE('You are Logged In!'))
     } else {
       res.status(400).send({ message: 'failed attempt' })
     }
