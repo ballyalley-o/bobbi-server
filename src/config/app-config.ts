@@ -5,6 +5,9 @@ import GLOBAL from '@config/global'
 import { logger, errorHandler, notFound } from '@middleware'
 import linkNex from '@routes'
 import { oneDay } from '@constants'
+import { LogRequest, isConnected } from '@utils'
+
+const TAG_env = 'production'
 
 /**
  *
@@ -17,8 +20,9 @@ import { oneDay } from '@constants'
  * @returns void
  */
 class App {
-  private app: Application
-  private env: string = GLOBAL.ENV
+  private _app: Application
+  private _env: string = GLOBAL.ENV
+  isConnected: boolean = false
 
   static app() {
     return new App().start()
@@ -37,10 +41,10 @@ class App {
    *
    */
   constructor() {
-    this.app = express()
-    this.app.use(express.json())
-    this.app.use(express.urlencoded({ extended: true }))
-    this.app.use(
+    this._app = express()
+    this._app.use(express.json())
+    this._app.use(express.urlencoded({ extended: true }))
+    this._app.use(
       cookieSession({
         name: 'bobbi-session',
         keys: ['key1'],
@@ -49,35 +53,37 @@ class App {
     )
     this.registerRoutes()
 
-    this.app.use(notFound)
-    this.app.use(errorHandler)
+    this._app.use(notFound)
+    this._app.use(errorHandler)
   }
 
   /**
    * Register routes
    * @returns void
    */
+  @LogRequest
   private registerRoutes() {
-    linkNex(this.app)
-    serverRoute(this.app)
+    linkNex(this._app)
+    serverRoute(this._app)
   }
 
   /**
    * Start the server
    * @returns void
    */
+  @isConnected
   public start(): void {
-    let prod = false
-    if (this.env === 'production') {
+    let prod: boolean = false
+    if (this._env === TAG_env) {
       prod = true
     }
 
     try {
-      this.app.listen(GLOBAL.PORT, () => {
-        logger.server(GLOBAL.PORT, GLOBAL.API_VERSION, prod, true)
+      this._app.listen(GLOBAL.PORT, () => {
+        logger.server(GLOBAL.PORT, GLOBAL.API_VERSION, prod, this.isConnected)
       })
     } catch (error: any) {
-      logger.server(GLOBAL.PORT, GLOBAL.API_VERSION, prod, false)
+      logger.server(GLOBAL.PORT, GLOBAL.API_VERSION, prod, this.isConnected)
       logger.error(error.message)
     }
   }
