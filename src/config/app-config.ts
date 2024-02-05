@@ -1,12 +1,12 @@
 import express, { Application } from 'express'
 import cookieSession from 'cookie-session'
-import serverRoute from '@routes/main'
 import GLOBAL from '@config/global'
 import { logger, errorHandler, notFound } from '@middleware'
-import { oneDay } from '@constants'
 import { LogInitRequest, isConnected } from '@decorators'
-import { router } from '@decorators/routes'
+import { oneDay } from '@constants'
+import AppRouter from '@app-router'
 import '@controllers/auth'
+
 
 const TAG_env = 'production'
 
@@ -50,7 +50,7 @@ class App {
         maxAge: oneDay,
       })
     )
-    this.registerRoutes()
+    this.registerRoute()
     this._app.use(notFound)
     this._app.use(errorHandler)
   }
@@ -60,9 +60,9 @@ class App {
    * @returns void
    */
   @LogInitRequest
-  private registerRoutes() {
-    this._app.use(router)
-    serverRoute(this._app)
+  private registerRoute() {
+    this._app.use(AppRouter.instance)
+    AppRouter.serverRouter()
   }
 
   /**
