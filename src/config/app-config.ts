@@ -7,11 +7,9 @@ import { oneDay } from '@constants'
 import AppRouter from '@app-router'
 import '@controllers/auth'
 
-
 const TAG_env = 'production'
 
 /**
- *
  * @class App
  *
  * @description
