@@ -4,7 +4,7 @@ import { conNex } from '@utils'
 
 /**
  * @class PathDir
- * @description This class represents the path directory
+ * @description This class handles all routers/traffic and acts as a path directory
  * @returns void
  */
 export class PathDir {
@@ -23,7 +23,6 @@ export class PathDir {
    * Connect the path
    * @returns void
    */
-
   private static _connex = conNex
 
   // endpoints
