@@ -3,9 +3,10 @@ import cookieSession from 'cookie-session'
 import serverRoute from '@routes/main'
 import GLOBAL from '@config/global'
 import { logger, errorHandler, notFound } from '@middleware'
-import linkNex from '@routes'
 import { oneDay } from '@constants'
-import { LogRequest, isConnected } from '@utils'
+import { LogInitRequest, isConnected } from '@decorators'
+import { router } from '@decorators/routes'
+import '@controllers/auth'
 
 const TAG_env = 'production'
 
@@ -37,8 +38,6 @@ class App {
    *
    * Constructor
    * @middlewares
-   *
-   *
    */
   constructor() {
     this._app = express()
@@ -52,7 +51,6 @@ class App {
       })
     )
     this.registerRoutes()
-
     this._app.use(notFound)
     this._app.use(errorHandler)
   }
@@ -61,9 +59,9 @@ class App {
    * Register routes
    * @returns void
    */
-  @LogRequest
+  @LogInitRequest
   private registerRoutes() {
-    linkNex(this._app)
+    this._app.use(router)
     serverRoute(this._app)
   }
 
