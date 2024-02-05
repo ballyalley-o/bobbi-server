@@ -2,8 +2,9 @@ import 'reflect-metadata'
 import express, { Router } from 'express'
 import { PathDir } from '@constants'
 import { conNex } from '@utils'
+import AppRouter from '@app-router'
 
-export const router = express.Router()
+// export const router = express.Router()
 const app = express()
 
 /**
@@ -23,7 +24,9 @@ export function linkAuthController(target: any) {
     }
   }
 
-  app.use(PathDir.API_PARAM, pathRouter)
+  return function (app: express.Application) {
+    app.use(PathDir.AUTH_ROOT, pathRouter)
+  }
 }
 
 /**
@@ -33,26 +36,17 @@ export function linkAuthController(target: any) {
  */
 export function controller(routePrefix: string) {
   return function (target: Function) {
+    const router = AppRouter.instance
+
     Object.getOwnPropertyNames(target.prototype).forEach((key) => {
       const routeHandler = target.prototype[key]
       const path = Reflect.getMetadata('path', target.prototype, key)
 
       if (path) {
-        console.log(`Assigning route ${routePrefix}${path}`)
-       let connectedPath =conNex(PathDir.API_ROOT, routePrefix, path)
-       console.log('connected Path',connectedPath)
-       console.log('routeHandler',routeHandler)
+       let connectedPath = conNex(PathDir.API_ROOT, routePrefix, path)
         router.get(connectedPath, routeHandler)
       }
     })
-    // for (let key in target.prototype) {
-    //   const routeHandler = target.prototype[key]
-    //   const path = Reflect.getMetadata('path', target.prototype, key)
-    //   if (path) {
-    //     console.log(`Assigning route ${routePrefix}${path}`)
-    //     router.get(conNex(PathDir.API_ROOT, routePrefix, path), routeHandler)
-    //   }
-    // }
   }
 }
 
