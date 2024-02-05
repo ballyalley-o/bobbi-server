@@ -1,3 +1,5 @@
+import { IExpressController } from '@interfaces/middleware'
+
 interface ILogger {
   /**
    *
@@ -11,11 +13,13 @@ interface ILogger {
    * @param params  any[]
    * @returns  {void}
    */
+  log: (...params: any[]) => void
   info: (...params: any[]) => void
   warn: (...params: any[]) => void
   error: (...params: any[]) => void
   table: (...params: any[]) => void
-  log: (...params: any[]) => void
+
+  req: IExpressController
 
   /**
    *

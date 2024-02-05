@@ -1,12 +1,16 @@
 import 'colors'
+import { IExpressController } from '@interfaces/middleware'
+import { Request, Response, NextFunction } from 'express'
 
 declare module 'colors' {
   interface String {
     yellow: string
-    bgCyan: string
     bgRed: string
     red: string
+    blue: string
+    bgCyan: string
     bgYellow: string
+    inverted: string
     // errored: any[]
   }
 }
@@ -34,6 +38,15 @@ const logger = {
 
   table: (...message: any[]) => {
     console.table(message)
+  },
+
+  req: (req: Request, res: Response) => {
+    console.log('')
+    console.log(' Request Method: '.dim, req.method.yellow.bold)
+    console.log(' Request URL: '.dim, req.url.yellow.bold)
+    console.log(' Request IP: '.dim, req?.ip?.yellow.bold)
+    console.log(' Request Time: '.dim, new Date().toString().yellow.bold)
+    console.log('')
   },
 
   server: (

@@ -11,9 +11,11 @@ export class PathDir {
   constructor() {
     throw new Error('This class cannot be instantiated')
   }
+
+  // TODO: refax to use enum
   // path parameters
-  static readonly HOME_PARAM = '/'
-  static readonly HOME_PARAM_v2 = '/home'
+  static readonly ORIGIN_PARAM = '/'
+  static readonly HOME_PARAM = '/home'
   static readonly API_PARAM = '/api'
   static readonly AUTH_PARAM = '/auth'
   static readonly SIGN_IN_PARAM = '/sign-in'
@@ -27,7 +29,7 @@ export class PathDir {
 
   // endpoints
   static API_ROOT = this._connex(PathDir.API_PARAM, GLOBAL.API_VERSION)
-  static HOME = this._connex(PathDir.API_ROOT, this.HOME_PARAM_v2)
+  static HOME = this._connex(PathDir.API_ROOT, this.HOME_PARAM)
   static AUTH_ROOT = this._connex(PathDir.API_ROOT, PathDir.AUTH_PARAM)
   static SIGN_IN = this._connex(PathDir.AUTH_ROOT, PathDir.SIGN_IN_PARAM)
   static SIGN_OUT = this._connex(PathDir.AUTH_ROOT, PathDir.SIGN_OUT_PARAM)
