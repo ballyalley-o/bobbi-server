@@ -22,7 +22,7 @@ export function controller(routePrefix: string) {
         key
       )
       const middlewares =
-        Reflect.getMetadata(MetaKey.middleware, target, key) || []
+        Reflect.getMetadata(MetaKey.middleware, target.prototype, key) || []
 
       if (path) {
         let connectedPath = conNex(PathDir.API_ROOT, routePrefix, path)
