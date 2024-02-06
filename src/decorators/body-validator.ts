@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { RequestHandler, Request, Response, NextFunction } from 'express'
-import { MetaKey } from '@enum'
+import { MetaKey } from '@constants/enum'
 import { RESPONSE } from '@constants'
 
 export function bodyValidator(...keys: string[] | []) {
