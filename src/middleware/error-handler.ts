@@ -1,4 +1,3 @@
-import { ExpressCallback } from '@typings'
 import { Request, Response, NextFunction } from 'express'
 import { RESPONSE } from '@constants'
 import { GLOBAL } from '@config'

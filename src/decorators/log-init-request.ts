@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
 
-function LogRequest(target: any, key: string, descriptor: PropertyDescriptor) {
+function LogInitRequest(
+  target: any,
+  key: string,
+  descriptor: PropertyDescriptor
+) {
   const originalMethod = descriptor.value
 
   descriptor.value = function (
@@ -17,4 +21,4 @@ function LogRequest(target: any, key: string, descriptor: PropertyDescriptor) {
   return descriptor
 }
 
-export default LogRequest
+export default LogInitRequest

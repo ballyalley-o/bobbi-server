@@ -1,20 +1,34 @@
-import { NextFunction, Request, Response } from 'express'
-import { asyncHandler } from '@middleware'
+import { Request, Response, NextFunction } from 'express'
 import { IRequestExtended } from '@interfaces/middleware'
 import { Element, PathDir } from '@constants'
+import { RequiredKey } from '@constants/enum'
+import {
+  get,
+  post,
+  controller,
+  use,
+  LogRequest,
+  bodyValidator,
+} from '@decorators'
 
-// @desc    - Get the Sign-In Form
-// @route   - GET /auth/sign-in
-// @access  - Public
-const getForm = asyncHandler(async (req: Request, res: Response) => {
-  res.status(200).send(Element.SIGNIN_FORM)
-})
+@controller(PathDir.AUTH_PARAM)
+export class AuthController {
+  // @desc    - Get the Sign-In Form
+  // @route   - GET /auth/sign-in
+  // @access  - Public
+  @get(PathDir.SIGN_IN_PARAM)
+  @use(LogRequest)
+  getForm(req: Request, res: Response): void {
+    res.status(200).send(Element.SIGNIN_FORM)
+  }
 
-// @desc    - Sign-In User
-// @route   - POST /auth/sign-in
-// @access  - Public
-const signIn = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
+  // @desc    - Sign-In User
+  // @route   - POST /auth/sign-in
+  // @access  - Public
+  @post(PathDir.SIGN_IN_PARAM)
+  @bodyValidator(RequiredKey.email, RequiredKey.password)
+  @use(LogRequest)
+  signIn(req: Request, res: Response, next: NextFunction): void {
     const { email, password } = req.body
 
     if (email === 'user@bobbi.com' && password === '123456') {
@@ -36,13 +50,26 @@ const signIn = asyncHandler(
       res.status(400).send({ message: 'failed attempt' })
     }
   }
-)
 
-// @desc    - Sign-Out User
-// @route   - POST /auth/sign-out
-// @access  - Public
-const signOut = asyncHandler(
-  async (req: IRequestExtended, res: Response, next: NextFunction) => {
+  // @desc    - Signed-in  User
+  // @route   - GET /auth
+  // @access  - Public
+  @get(PathDir.ORIGIN_PARAM)
+  @use(LogRequest)
+  getAuth(req: Request, res: Response, next: NextFunction): void {
+    if (req.session && req.session.signedIn) {
+      res.status(200).send(Element.CORE('You are Logged In'))
+    } else {
+      res.status(401).send(Element.SIGNIN_REDIR)
+    }
+  }
+
+  // @desc    - Sign-Out User
+  // @route   - POST /auth/sign-out
+  // @access  - Public
+  @post(PathDir.SIGN_OUT_PARAM)
+  @use(LogRequest)
+  signOut(req: IRequestExtended, res: Response, next: NextFunction): void {
     if (req.session) {
       req.session = null
       res.status(200).send(Element.SIGNOUT_REDIR)
@@ -50,21 +77,18 @@ const signOut = asyncHandler(
       res.status(401).send({ message: 'User failed to sign-out' })
     }
   }
-)
 
-// @desc    - Signed-in  User
-// @route   - GET /auth
-// @access  - Public
-const getAuth = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    if (req.session && req.session.signedIn) {
-      // req.session = {}
-      res.status(200).send(Element.CORE('You are Logged In'))
+  // @desc    - Sign-Out User (GET)
+  // @route   - GET /auth/sign-out
+  // @access  - Public
+  @get(PathDir.SIGN_OUT_PARAM)
+  @use(LogRequest)
+  getSignOut(req: IRequestExtended, res: Response, next: NextFunction): void {
+    if (req.session) {
+      req.session = null
+      res.status(200).send(Element.SIGNOUT_REDIR)
     } else {
-      res.status(401).send(Element.SIGNIN_REDIR)
+      res.status(401).send({ message: 'User failed to sign-out' })
     }
   }
-)
-
-const authController = { getForm, signIn, signOut, getAuth }
-export default authController
+}
