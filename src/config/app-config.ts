@@ -6,6 +6,7 @@ import { LogInitRequest, isConnected } from '@decorators'
 import { oneDay } from '@constants'
 import AppRouter from '@app-router'
 import '@controllers/auth'
+import '@controllers/core'
 
 const TAG_env = 'production'
 

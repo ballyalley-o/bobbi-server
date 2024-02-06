@@ -1,28 +1,6 @@
 import 'reflect-metadata'
-import express, { Router } from 'express'
-import { PathDir } from '@constants'
-import { Method, MetaKey } from '@enum'
-// /**
-//  * TODO: implement the linkAuthController function
-//  * @param target - Controller class
-//  * @returns - A function that takes in an app and assigns the pathRouter to the app
-//  */
-// export function linkAuthController(target: any) {
-//   const pathRouter = Router()
-
-//   for (const key in target.prototype) {
-//     const routeHandler = target.prototype[key]
-//     const path = Reflect.getMetadata(MetaKey.path, target.prototype, key)
-
-//     if (path) {
-//       pathRouter.get(path, routeHandler.bind(new target()))
-//     }
-//   }
-
-//   return function (app: express.Application) {
-//     app.use(PathDir.AUTH_ROOT, pathRouter)
-//   }
-// }
+import { Method, MetaKey } from '@constants/enum'
+import { RouteHandlerDescriptor } from '@interfaces/middleware'
 
 /**
  *
@@ -33,7 +11,7 @@ import { Method, MetaKey } from '@enum'
 
 export function bindRoute(method: string) {
   return function (path: string) {
-    return function (target: any, key: string, desc: PropertyDescriptor) {
+    return function (target: any, key: string, desc: RouteHandlerDescriptor) {
       Reflect.defineMetadata(MetaKey.path, path, target, key)
       Reflect.defineMetadata(MetaKey.method, method, target, key)
     }

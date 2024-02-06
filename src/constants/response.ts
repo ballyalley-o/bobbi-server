@@ -25,10 +25,12 @@ const RESPONSE = {
   },
   error: {
     500: 'Internal Server Error: An unexpected server error occurred',
+    422: 'Unprocessable Entity: The request is well-formed but unable to process',
     404: 'Not Found: The requested resource could not be found',
     403: 'Forbidden: Access to the requested resource is forbidden',
     401: 'Unauthorized: Authentication is required or credentials are invalid',
     400: (data: any) => `400: ${data} already exists`,
+    missingKey: (data: any) => `Missing property: ${data}`,
     invalid: 'Bad Request: The request is malformed or invalid',
     notFound: (data: any) => `${data} is not found`,
     invalidRole: async (role: any) =>

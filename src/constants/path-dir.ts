@@ -1,6 +1,7 @@
 import { __dirname } from '@config'
 import { GLOBAL } from '@config'
 import { conNex } from '@utils'
+import { PathParam } from '@constants/enum'
 
 /**
  * @class PathDir
@@ -12,14 +13,13 @@ export class PathDir {
     throw new Error('This class cannot be instantiated')
   }
 
-  // TODO: refax to use enum
   // path parameters
-  static readonly ORIGIN_PARAM = '/'
-  static readonly HOME_PARAM = '/home'
-  static readonly API_PARAM = '/api'
-  static readonly AUTH_PARAM = '/auth'
-  static readonly SIGN_IN_PARAM = '/sign-in'
-  static readonly SIGN_OUT_PARAM = '/sign-out'
+  static readonly ORIGIN_PARAM = PathParam.ORIGIN_PARAM
+  static readonly HOME_PARAM = PathParam.HOME_PARAM
+  static readonly API_PARAM = PathParam.API_PARAM
+  static readonly AUTH_PARAM = PathParam.AUTH_PARAM
+  static readonly SIGN_IN_PARAM = PathParam.SIGN_IN_PARAM
+  static readonly SIGN_OUT_PARAM = PathParam.SIGN_OUT_PARAM
 
   /**
    * Connect the path

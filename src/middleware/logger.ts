@@ -1,6 +1,5 @@
 import 'colors'
-import { IExpressController } from '@interfaces/middleware'
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 
 declare module 'colors' {
   interface String {
