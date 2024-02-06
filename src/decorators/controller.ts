@@ -2,7 +2,7 @@ import 'reflect-metadata'
 import { PathDir } from '@constants'
 import { conNex } from '@utils'
 import AppRouter from '@app-router'
-import { Method, MetaKey } from '@enum'
+import { Method, MetaKey } from '@constants/enum'
 import { autoValidate } from '@decorators/body-validator'
 
 /**
