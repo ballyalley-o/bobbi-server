@@ -2,7 +2,7 @@ import { Response } from 'express'
 import { IRequestExtended } from '@interfaces/middleware'
 import { Element } from '@constants'
 import { controller, get, use } from '@decorators'
-import { LogRequest, authProtect, debug } from '@decorators'
+import { authProtect } from '@decorators'
 import { PathDir } from '@constants'
 
 @controller(PathDir.HOME_PARAM)
