@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { Method, MetaKey } from '@enum'
+import { Method, MetaKey } from '@constants/enum'
 import { RouteHandlerDescriptor } from '@interfaces/middleware'
 
 /**
