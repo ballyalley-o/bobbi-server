@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { IRequestExtended } from '@interfaces/middleware'
 import { Element, PathDir } from '@constants'
-import { RequiredKey } from '@enum'
+import { RequiredKey } from '@constants/enum'
 import {
   get,
   post,
@@ -10,8 +10,6 @@ import {
   LogRequest,
   bodyValidator,
 } from '@decorators'
-
-// class refax
 
 @controller(PathDir.AUTH_PARAM)
 export class AuthController {
