@@ -5,17 +5,6 @@ import { controller, get, use } from '@decorators'
 import { LogRequest, authProtect, debug } from '@decorators'
 import { PathDir } from '@constants'
 
-// const getCore = asyncHandler(async (req: IRequestExtended, res: Response) => {
-//   if (req.session && req.session.signedIn) {
-//     res.status(200).send(Element.CORE('HOME PAGE'))
-//   } else {
-//     res.status(200).send(Element.SIGNIN_REDIR)
-//   }
-// })
-
-// const coreController = { getCore }
-// export default coreController
-
 @controller(PathDir.HOME_PARAM)
 export class HomeController {
   /**
