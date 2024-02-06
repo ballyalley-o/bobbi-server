@@ -1,0 +1,7 @@
+{
+  "out": ".docs",
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "name": "bobbi-server Docs"
+  // "mode": "file"
+  // "includeDeclarations": true
+}
