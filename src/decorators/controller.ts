@@ -3,6 +3,7 @@ import { PathDir } from '@constants'
 import { conNex } from '@utils'
 import AppRouter from '@app-router'
 import { Method, MetaKey } from '@enum'
+import { autoValidate } from '@decorators/body-validator'
 
 /**
  *
@@ -24,9 +25,13 @@ export function controller(routePrefix: string) {
       const middlewares =
         Reflect.getMetadata(MetaKey.middleware, target.prototype, key) || []
 
+      const requiredKeys =
+        Reflect.getMetadata(MetaKey.validator, target.prototype, key) || []
+      const validator = autoValidate(requiredKeys)
+
       if (path) {
         let connectedPath = conNex(PathDir.API_ROOT, routePrefix, path)
-        router[method](connectedPath, ...middlewares, routeHandler)
+        router[method](connectedPath, ...middlewares, validator, routeHandler)
       }
     })
   }
