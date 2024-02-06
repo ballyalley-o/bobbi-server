@@ -30,6 +30,12 @@
     }
   },
 
-  "include": ["**/*.ts", "**/*.js", "src/app-router.bak"],
+  "include": [
+    "**/*.ts",
+    "**/*.js",
+    "src/app-router.bak",
+    "src/routes/index.bak",
+    "src/routes/auth.bak"
+  ],
   "exclude": ["node_modules"]
 }
